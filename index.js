@@ -1,6 +1,6 @@
 import getArgs from "./helpers/args.js";
-import { getWeather } from "./services/apiService.js";
-import { printError, printSuccess, printHelp } from "./services/logService.js";
+import { getWeather, getIcons } from "./services/apiService.js";
+import { printError, printSuccess, printHelp, printWeather } from "./services/logService.js";
 import { saveKeyValeu, TOKEN_DISTIONARY } from "./services/storageServices.js";
 
 const saveToken = async (token) => {
@@ -31,7 +31,8 @@ async function startCLI() {
 
   try {
     const weather = await getWeather(args.s || 'Samarqand');
-    console.log(weather); 
+    const icon = getIcons(weather.weather[0].icon);
+    printWeather(weather, icon);
   } catch (error) {
     printError(error.message);
   }

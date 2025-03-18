@@ -26,8 +26,6 @@ const printWeather = (response, icon) => {
     Humidity: ${response.main.humidity}%
     Wind speed: ${response.wind.speed}
     `);
-
-
 }
 
 export { printError, printSuccess, printHelp, printWeather }
